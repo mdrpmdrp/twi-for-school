@@ -22,6 +22,9 @@
             min-height: 100vh;
             font-family: 'Prompt', sans-serif;
             background: #0052D4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             /* fallback for old browsers */
             background: -webkit-linear-gradient(to top, #6FB1FC, #4364F7, #0052D4);
             /* Chrome 10-25, Safari 5.1-6 */
@@ -29,6 +32,7 @@
             /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
         }
+
 
         .form-select {
             border-radius: 3rem;
@@ -67,40 +71,43 @@
 </head>
 
 <body>
-    <section>
-        <p class="display-4 text-center text-light pt-4">ตัวกรอง</p>
-    </section>
-    <section>
-        <div class="container-fluid px-5 main-container">
-            <form id="main-form">
-                <div class="row">
-                    <div class="col-md-4 text-center mt-3">
-                        <label for="nationality">สัญชาติ</label>
-                        <select name="nationality" id="nationality" class="form-select">
-                            <option value="" disabled selected>เลือกสัญชาติ</option>
-                        </select>
+    <div class="main-div">
+        <section>
+            <p class="display-4 text-center text-light pt-4">ตัวกรอง</p>
+        </section>
+        <section>
+            <div class="container-fluid px-5 main-container">
+                <form id="main-form">
+                    <div class="row">
+                        <div class="col-md-4 text-center mt-3">
+                            <label for="nationality">สัญชาติ</label>
+                            <select name="nationality" id="nationality" class="form-select">
+                                <option value="" disabled selected>เลือกสัญชาติ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-center mt-3">
+                            <label for="teaching-subject">วิชาที่สอน</label>
+                            <select name="teaching-subject" id="teaching-subject" class="form-select">
+                                <option value="" disabled selected>เลือกวิชาที่สอน</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-center mt-3">
+                            <label for="gender">เพศ</label>
+                            <select name="gender" id="gender" class="form-select">
+                                <option value="" disabled selected>เลือกเพศ</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-md-4 text-center mt-3">
-                        <label for="teaching-subject">วิชาที่สอน</label>
-                        <select name="teaching-subject" id="teaching-subject" class="form-select">
-                            <option value="" disabled selected>เลือกวิชาที่สอน</option>
-                        </select>
+                    <div class="row mt-4">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-warning submit-btn">ตกลง</button>
+                        </div>
                     </div>
-                    <div class="col-md-4 text-center mt-3">
-                        <label for="gender">เพศ</label>
-                        <select name="gender" id="gender" class="form-select">
-                            <option value="" disabled selected>เลือกเพศ</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col text-center">
-                        <button type="submit" class="btn btn-warning submit-btn">ตกลง</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
+                </form>
+            </div>
+        </section>
+    </div>
+
 
     <script>
         var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
@@ -108,14 +115,14 @@
             $.LoadingOverlay("show", {
                 background: "rgba(36, 173, 243, 0.7)"
             });
-            liff.init({ liffId: '1656895429-ekjYY9Do' })
-            liff.ready.then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                } else {
-                    checkRegistStatus()
-                }
-            })
+            // liff.init({ liffId: '1656895429-ekjYY9Do' })
+            // liff.ready.then(() => {
+            //     if (!liff.isLoggedIn()) {
+            //         liff.login();
+            //     } else {
+            //         checkRegistStatus()
+            //     }
+            // })
         })
         async function checkRegistStatus() {
             let profile = await liff.getProfile()
