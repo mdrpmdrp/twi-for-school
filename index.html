@@ -108,14 +108,14 @@
             $.LoadingOverlay("show", {
                 background: "rgba(36, 173, 243, 0.7)"
             });
-            // liff.init({ liffId: '1656895429-ekjYY9Do' })
-            // liff.ready.then(() => {
-            //     if (!liff.isLoggedIn()) {
-            //         liff.login();
-            //     } else {
-            //         checkRegistStatus()
-            //     }
-            // })
+            liff.init({ liffId: '1656895429-ekjYY9Do' })
+            liff.ready.then(() => {
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                } else {
+                    checkRegistStatus()
+                }
+            })
         })
         async function checkRegistStatus() {
             let profile = await liff.getProfile()
