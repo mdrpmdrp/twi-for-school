@@ -150,10 +150,10 @@
             formData.forEach(function (item) {
                 formobj[item.name] = item.value
             })
-            let msg = '#ค้นหา\n'
+            let msg = '#ค้นหา'
             Object.keys(formobj).forEach(function (key) {
                 if (formobj[key] != 'Not Specified' || formobj[key] != '') {
-                    msg += `>${key} : ${formobj[key]} \n`
+                    msg += `\n>${key} : ${formobj[key]}`
                 }
             })
             liff.sendMessages([{
