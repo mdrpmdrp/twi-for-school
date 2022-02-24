@@ -225,9 +225,9 @@
             })
         })
         async function checkRegistStatus() {
-            // let profile = await liff.getProfile()
-            // let userId = profile.userId
-            let userId = 'xxxx'
+            let profile = await liff.getProfile()
+            let userId = profile.userId
+            // let userId = 'xxxx'
             let url = scripturl + '?opt=checkregist&uid=' + userId
             $.getJSON(url, function (res) {
                 console.log("🚀 ~ res", res)
