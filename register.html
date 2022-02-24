@@ -137,15 +137,11 @@
     <script>
         var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
         $(document).ready(function () {
-            $.LoadingOverlay("show", {
-                background: "rgba(36, 173, 243, 0.7)"
-            });
+
             liff.init({ liffId: '1656895429-e1RQQZxY' })
             liff.ready.then(() => {
                 if (!liff.isLoggedIn()) {
                     liff.login();
-                } else {
-                    checkRegistStatus()
                 }
             })
         })
