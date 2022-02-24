@@ -184,19 +184,40 @@
                     data: data,
                     success: function (res) {
                         $.LoadingOverlay("hide");
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'ลงทะเบียนเสร็จสิ้น',
-                            text: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่ TWI ChatBot ของเรา',
-                            confirmButtonText: 'ตกลง',
-                        }).then(function () {
-                            liff.sendMessages([{
-                                type: 'text',
-                                text: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่ TWI ChatBot ของเรา'
-                            }]).then(function () {
-                                liff.closeWindow()
+                        if (res == 'duplicate') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'ลงทะเบียนไม่สำเร็จ',
+                                text: 'บัญชีไลน์นี้ลงทะเบียนแล้ว',
+                                confirmButtonText: 'ตกลง',
+                            }).then((result) => {
+                                if (liff.isInClient()) {
+                                    liff.closeWindow();
+                                } else {
+                                    window.location.href = 'https://lin.ee/RMVcU7O'
+                                }
                             })
-                        })
+                        } else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'ลงทะเบียนเสร็จสิ้น',
+                                text: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่ TWI ChatBot ของเรา',
+                                confirmButtonText: 'ตกลง',
+                            }).then(function () {
+                                if (liff.isInClient()) {
+                                    liff.sendMessages([{
+                                        type: 'text',
+                                        text: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่ TWI ChatBot ของเรา'
+                                    }]).then(function () {
+                                        liff.closeWindow()
+                                    })
+                                } else {
+                                    window.location.href = 'https://lin.ee/RMVcU7O'
+                                }
+
+                            })
+                        }
+
                     },
                     error: function (err) {
                         $.LoadingOverlay("hide");
