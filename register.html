@@ -179,7 +179,7 @@
                 data.displayname = profile.displayName
                 data.pictureurl = profile.pictureUrl
                 $.ajax({
-                    url: scripturl + 'opt=regist',
+                    url: scripturl + '?opt=regist',
                     type: 'POST',
                     data: data,
                     success: function (res) {
