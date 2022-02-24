@@ -24,11 +24,11 @@
             background: #0052D4;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: start;
             /* fallback for old browsers */
-            background: -webkit-linear-gradient(to top, #6FB1FC, #4364F7, #0052D4);
+            /* background: -webkit-linear-gradient(to top, #6FB1FC, #4364F7, #0052D4); */
             /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to top, #6FB1FC, #4364F7, #0052D4);
+            /* background: linear-gradient(to top, #6FB1FC, #4364F7, #0052D4); */
             /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
         }
@@ -73,7 +73,7 @@
 <body>
     <div class="main-div">
         <section>
-            <p class="display-4 text-center text-light">ตัวกรอง</p>
+            <p class="display-4 text-center text-light mt-5">ตัวกรอง</p>
         </section>
         <section>
             <div class="container-fluid px-5 main-container">
@@ -112,17 +112,17 @@
     <script>
         var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
         $(document).ready(function () {
-            $.LoadingOverlay("show", {
-                background: "rgba(36, 173, 243, 0.7)"
-            });
-            liff.init({ liffId: '1656895429-ekjYY9Do' })
-            liff.ready.then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                } else {
-                    checkRegistStatus()
-                }
-            })
+            // $.LoadingOverlay("show", {
+            //     background: "rgba(36, 173, 243, 0.7)"
+            // });
+            // liff.init({ liffId: '1656895429-ekjYY9Do' })
+            // liff.ready.then(() => {
+            //     if (!liff.isLoggedIn()) {
+            //         liff.login();
+            //     } else {
+            //         checkRegistStatus()
+            //     }
+            // })
         })
         async function checkRegistStatus() {
             let profile = await liff.getProfile()
