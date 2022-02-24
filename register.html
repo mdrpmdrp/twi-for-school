@@ -201,14 +201,92 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'ลงทะเบียนเสร็จสิ้น',
-                                text: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่ TWI ChatBot ของเรา',
+                                html: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่<br>TWI ChatBot ของเรา',
                                 confirmButtonText: 'ตกลง',
                             }).then(function () {
                                 if (liff.isInClient()) {
-                                    liff.sendMessages([{
-                                        type: 'text',
-                                        text: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่ TWI ChatBot ของเรา'
-                                    }]).then(function () {
+                                    let bubble = {
+                                        "type": "bubble",
+                                        "header": {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents": [
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                        {
+                                                            "type": "image",
+                                                            "url": profile.pictureUrl,
+                                                            "size": "full",
+                                                            "aspectMode": "cover"
+                                                        }
+                                                    ],
+                                                    "width": "50px",
+                                                    "cornerRadius": "50px"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "Welcome new Member",
+                                                            "weight": "bold",
+                                                            "color": "#ffffff"
+                                                        }
+                                                    ],
+                                                    "alignItems": "center",
+                                                    "justifyContent": "center"
+                                                }
+                                            ],
+                                            "margin": "lg",
+                                            "paddingAll": "md"
+                                        },
+                                        "body": {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "contents": [
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "ท่านสามารถค้นหาครูต่างชาติได้โดยใช้ Rich Menu ด้านล่างหน้าจอ ⬇️⬇️⬇️⬇️",
+                                                            "wrap": true,
+                                                            "align": "center"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "spacing": "lg"
+                                        },
+                                        "styles": {
+                                            "header": {
+                                                "backgroundColor": "#0069D9"
+                                            }
+                                        }
+                                    }
+                                    let flex = {
+                                        "type": "flex",
+                                        "altText": "สวัสดี คุณ " + profile.displayName,
+                                        "contents": bubble,
+                                        "quickReply": {
+                                            "items": [
+                                                {
+                                                    "action": {
+                                                        "label": "ค้นหาครูต่างชาติ",
+                                                        "type": "uri",
+                                                        "uri": "https://liff.line.me/1656895429-ekjYY9Do"
+                                                    },
+                                                    "type": "action",
+                                                    "imageUrl": "https://www.img.in.th/images/6745b22293441a6ce6951fecbef69156.gif"
+                                                }
+                                            ]
+                                        },
+                                    }
+                                    liff.sendMessages([flex]).then(function () {
                                         liff.closeWindow()
                                     })
                                 } else {
