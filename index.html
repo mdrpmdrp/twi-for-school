@@ -34,12 +34,14 @@
         }
 
 
-        .form-select {
+        .form-select,
+        .form-control {
             border-radius: 3rem;
             border: none;
             outline: none;
             box-shadow: none;
             text-align-last: center;
+            text-align: center;
             font-size: 1.2rem;
         }
 
@@ -196,9 +198,13 @@
                                 <option value="" disabled selected>เลือกระดับเงินเดือน</option>
                             </select>
                         </div>
+                        <div class="col-md-4 text-center mt-3 for-member">
+                            <label for="startworking-date">วันที่ต้องการให้เริ่มงาน</label>
+                            <input type="text" name="startworking-date" id="startworking-date" class="form-control" placeholder="yyyy-MM-dd" onfocus="(this.type='date')" onblur="(this.type='text')">>
+                        </div>
 
                     </div>
-                    <div class="row mt-4">
+                    <div class="row mt-4 mb-5">
                         <div class="col text-center">
                             <button type="submit" class="btn btn-warning submit-btn">ตกลง</button>
                         </div>
@@ -212,17 +218,17 @@
     <script>
         var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
         $(document).ready(function () {
-            $.LoadingOverlay("show", {
-                background: "rgba(36, 173, 243, 0.7)"
-            });
-            liff.init({ liffId: '1656895429-ekjYY9Do' })
-            liff.ready.then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                } else {
-                    checkRegistStatus()
-                }
-            })
+            // $.LoadingOverlay("show", {
+            //     background: "rgba(36, 173, 243, 0.7)"
+            // });
+            // liff.init({ liffId: '1656895429-ekjYY9Do' })
+            // liff.ready.then(() => {
+            //     if (!liff.isLoggedIn()) {
+            //         liff.login();
+            //     } else {
+            //         checkRegistStatus()
+            //     }
+            // })
         })
         async function checkRegistStatus() {
             let profile = await liff.getProfile()
