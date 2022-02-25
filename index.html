@@ -239,13 +239,14 @@
                 console.log("🚀 ~ res", res)
                 $.LoadingOverlay("hide");
                 if (!res.ondemo) {
-                    return swal.fire({
+                    return Swal.fire({
                         title: 'คุณใช้สิทธิทดลองค้นหาครูไปแล้ว',
                         html: 'หากต้องการค้นหาคุณครู กรุณาลงทะเบียน<br><a href="https://liff.line.me/1656895429-e1RQQZxY">คลิกเพื่อลงทะเบียน</a>',
                         icon: 'error',
                         allowOutsideClick: false,
                     })
                 }
+                delete res.ondemo
                 setDropdownList(res)
             })
         }
