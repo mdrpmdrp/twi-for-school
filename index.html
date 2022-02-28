@@ -277,7 +277,7 @@
             let msg = '#ค้นหา'
             Object.keys(formobj).forEach(function (key) {
                 console.log(key, formobj[key], formobj[key].length)
-                if (formobj[key] != 'Not Specified' || formobj[key] != 'Either female or male' || formobj[key] != 'Every Subjects' || formobj[key] != '' || formobj[key].length > 3) {
+                if (formobj[key] != 'Not Specified' && formobj[key] != 'Either female or male' && formobj[key] != 'Every Subjects' && formobj[key] != '' && formobj[key].length > 3) {
                     msg += `\n>${key} : ${formobj[key]}`
                 }
             })
