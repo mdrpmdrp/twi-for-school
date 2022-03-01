@@ -221,23 +221,24 @@
             $.LoadingOverlay("show", {
                 background: "rgba(36, 173, 243, 0.7)"
             });
-            liff.init({ liffId: '1656895429-ekjYY9Do' })
-            liff.ready.then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                } else {
+            //liff.init({ liffId: '1656895429-ekjYY9Do' })
+           // liff.ready.then(() => {
+                //if (!liff.isLoggedIn()) {
+                   // liff.login();
+               // } else {
                     checkRegistStatus()
-                }
-            })
+             //   }
+           // })
         })
         async function checkRegistStatus() {
-            let profile = await liff.getProfile()
-            let userId = profile.userId
-            // let userId = 'xxxx'
+           // let profile = await liff.getProfile()
+           // let userId = profile.userId
+             let userId = 'xxxx'
             let url = scripturl + '?opt=checkregist&uid=' + userId
             $.getJSON(url, function (res) {
                 console.log("🚀 ~ res", res)
                 $.LoadingOverlay("hide");
+res.ondemo = true
                 if (!res.ondemo) {
                     return Swal.fire({
                         title: 'คุณใช้สิทธิทดลองค้นหาครูไปแล้ว',
@@ -255,6 +256,7 @@
         function setDropdownList(res) {
             Object.keys(res).forEach(function (key) {
                 if (key == 'member') {
+res.member = true
                     if (res.member) {
                         $('.for-member').slideDown(200)
                     }
