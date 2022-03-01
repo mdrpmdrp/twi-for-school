@@ -200,7 +200,7 @@
                         </div>
                         <div class="col-md-4 text-center mt-3 for-member">
                             <label for="startworking-date">วันที่ต้องการให้เริ่มงาน</label>
-                            <input type="text" name="startworking-date" id="startworking-date" class="form-control" placeholder="yyyy-MM-dd" onfocus="(this.type='date')" onblur="(this.type='text')">
+                            <input type="text" name="startworking-date" id="startworking-date" class="form-control">
                         </div>
 
                     </div>
@@ -218,27 +218,27 @@
     <script>
         var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
         $(document).ready(function () {
-           // $.LoadingOverlay("show", {
-              //  background: "rgba(36, 173, 243, 0.7)"
-           // });
+            // $.LoadingOverlay("show", {
+            //  background: "rgba(36, 173, 243, 0.7)"
+            // });
             //liff.init({ liffId: '1656895429-ekjYY9Do' })
-           // liff.ready.then(() => {
-                //if (!liff.isLoggedIn()) {
-                   // liff.login();
-               // } else {
-                    checkRegistStatus()
-             //   }
-           // })
+            // liff.ready.then(() => {
+            //if (!liff.isLoggedIn()) {
+            // liff.login();
+            // } else {
+            checkRegistStatus()
+            //   }
+            // })
         })
         async function checkRegistStatus() {
-           // let profile = await liff.getProfile()
-           // let userId = profile.userId
-             let userId = 'xxxx'
+            // let profile = await liff.getProfile()
+            // let userId = profile.userId
+            let userId = 'xxxx'
             let url = scripturl + '?opt=checkregist&uid=' + userId
             $.getJSON(url, function (res) {
                 console.log("🚀 ~ res", res)
                 //$.LoadingOverlay("hide");
-res.ondemo = true
+                res.ondemo = true
                 if (!res.ondemo) {
                     return Swal.fire({
                         title: 'คุณใช้สิทธิทดลองค้นหาครูไปแล้ว',
@@ -256,7 +256,7 @@ res.ondemo = true
         function setDropdownList(res) {
             Object.keys(res).forEach(function (key) {
                 if (key == 'member') {
-res.member = true
+                    res.member = true
                     if (res.member) {
                         $('.for-member').slideDown(200)
                     }
