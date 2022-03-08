@@ -127,6 +127,7 @@
                 liff.login();
             }
         })
+        
     })
     $('#regist-form').submit(async function () {
         event.preventDefault()
@@ -153,7 +154,7 @@
 
         if (!isAlert) {
             $.LoadingOverlay("show", {
-                background: "rgba(36, 173, 243, 0.7)"
+                // background: "rgba(177, 48, 104, 0.5)"
             });
             let profile = await liff.getProfile()
             data.uid = profile.userId
