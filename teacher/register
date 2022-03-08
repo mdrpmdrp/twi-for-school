@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body {
+            min-height: 100vh;
+            width: 100vw;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-control {
+            border-radius: 3rem;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            text-align-last: center;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        input.form-control:focus {
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(255, 202, 44, .5);
+            font-size: 1.3rem;
+        }
+
+        label {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .submit-btn {
+
+            border-radius: 3rem;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            color: black;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            width: 200px;
+        }
+
+
+        .submit-btn:hover {
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-div">
+        <section class="text-center mt-2">
+            <img alt="icon" src="https://img.icons8.com/ios/48/ffffff/men-age-group-4.png" />
+            <p class="display-4 text-center text-light fw-bold">Teacher Registration</p>
+        </section>
+        <section>
+            <div class="container-fluid main-container">
+                <form id="regist-form">
+                    <div class="row justify-content-center">
+                        <div class="col-12  text-center mt-3">
+                            <label for="name"><span><img alt="icon" src="https://img.icons8.com/fluency-systems-regular/20/ffffff/user.png" /></span> Fullname</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                        </div>
+                        <div class="col-12  text-center mt-3">
+                            <label for="email"><span><img alt="icon" src="https://img.icons8.com/external-kmg-design-basic-outline-kmg-design/20/ffffff/external-email-business-management-kmg-design-basic-outline-kmg-design.png" /></span>
+                                Email</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12  text-center mt-3">
+                            <label for="lineid"><span><img alt="icon" src="https://img.icons8.com/windows/20/ffffff/line-me.png" /></span> Line ID</label>
+                            <input type="text" id="lineid" name="lineid" class="form-control">
+                        </div>
+                        <div class="col-12  text-center mt-3">
+                            <label for="tel"><span><img alt="icon" src="https://img.icons8.com/material-outlined/20/ffffff/phone-not-being-used.png" /></span> Tel</label>
+                            <input type="text" id="tel" name="tel" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-warning submit-btn">Confirm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        VANTA.GLOBE({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00
+        })
+    </script>
+<script>
+    var scripturl ='https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
+    $(document).ready(function(){
+        //  $.LoadingOverlay("show", {
+        //     background: "rgba(0, 168, 255, 0.6)"
+        // });
+    })
+    $('#regist-form').submit(async function () {
+        event.preventDefault()
+        let formdata = $(this).serializeArray()
+        let data = {}
+        formdata.forEach(function (item) {
+            data[item.name] = item.value
+        })
+        let isAlert = false
+        Object.keys(data).forEach(function (key) {
+            if (data[key] == '' && !isAlert) {
+                isAlert = true
+                $(`#${key}`).focus()
+                Swal.fire({
+                    icon: 'error',
+                    title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                    text: $('label[for=' + key + ']').text(),
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                return false
+            }
+        })
+
+        if (!isAlert) {
+            $.LoadingOverlay("show", {
+                background: "rgba(36, 173, 243, 0.7)"
+            });
+            let profile = await liff.getProfile()
+            data.uid = profile.userId
+            data.displayname = profile.displayName
+            data.pictureurl = profile.pictureUrl
+            $.ajax({
+                url: scripturl + '?opt=teacherregist',
+                type: 'POST',
+                data: data,
+                success: function (res) {
+                    $.LoadingOverlay("hide");
+                    if (res == 'duplicate') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ลงทะเบียนไม่สำเร็จ',
+                            text: 'บัญชีไลน์นี้ลงทะเบียนแล้ว',
+                            confirmButtonText: 'ตกลง',
+                        }).then((result) => {
+                            if (liff.isInClient()) {
+                                liff.closeWindow();
+                            } else {
+                                window.location.href = 'https://lin.ee/RMVcU7O'
+                            }
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'ลงทะเบียนเสร็จสิ้น',
+                            html: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่<br>TWI ChatBot ของเรา',
+                            confirmButtonText: 'ตกลง',
+                        }).then(function () {
+                            if (liff.isInClient()) {
+                                let bubble = {
+                                    "type": "bubble",
+                                    "header": {
+                                        "type": "box",
+                                        "layout": "horizontal",
+                                        "contents": [
+                                            {
+                                                "type": "box",
+                                                "layout": "vertical",
+                                                "contents": [
+                                                    {
+                                                        "type": "image",
+                                                        "url": profile.pictureUrl,
+                                                        "size": "full",
+                                                        "aspectMode": "cover"
+                                                    }
+                                                ],
+                                                "width": "50px",
+                                                "cornerRadius": "50px"
+                                            },
+                                            {
+                                                "type": "box",
+                                                "layout": "vertical",
+                                                "contents": [
+                                                    {
+                                                        "type": "text",
+                                                        "text": "Welcome " + profile.displayName,
+                                                        "weight": "bold",
+                                                        "color": "#ffffff"
+                                                    }
+                                                ],
+                                                "alignItems": "center",
+                                                "justifyContent": "center"
+                                            }
+                                        ],
+                                        "margin": "lg",
+                                        "paddingAll": "md"
+                                    },
+                                    "body": {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                                "type": "box",
+                                                "layout": "vertical",
+                                                "contents": [
+                                                    {
+                                                        "type": "text",
+                                                        "text": "ท่านสามารถค้นหาครูต่างชาติด้วยการกดปุ่มค้นหาครู",
+                                                        "wrap": true,
+                                                        "align": "center"
+                                                    },
+                                                    {
+                                                        "type": "box",
+                                                        "layout": "horizontal",
+                                                        "contents": [
+                                                            {
+                                                                "type": "box",
+                                                                "layout": "vertical",
+                                                                "contents": [
+                                                                    {
+                                                                        "type": "box",
+                                                                        "layout": "vertical",
+                                                                        "contents": [
+                                                                            {
+                                                                                "type": "image",
+                                                                                "url": "https://img.in.th/images/f2f0cb7f9ab880ef8868d819d1b73632.png",
+                                                                                "size": "full",
+                                                                                "aspectMode": "fit",
+                                                                                "animated": true,
+                                                                                "flex": 7,
+                                                                                "align": "start"
+                                                                            }
+                                                                        ],
+                                                                        "width": "30px"
+                                                                    }
+                                                                ],
+                                                                "height": "30px",
+                                                                "flex": 3,
+                                                                "alignItems": "flex-end"
+                                                            },
+                                                            {
+                                                                "type": "text",
+                                                                "text": "ค้นหาครู",
+                                                                "gravity": "center",
+                                                                "align": "start",
+                                                                "flex": 5
+                                                            }
+                                                        ],
+                                                        "justifyContent": "center",
+                                                        "alignItems": "center",
+                                                        "spacing": "md",
+                                                        "borderColor": "#333333",
+                                                        "cornerRadius": "50px",
+                                                        "borderWidth": "medium",
+                                                        "height": "50px",
+                                                        "action": {
+                                                            "type": "uri",
+                                                            "label": "action",
+                                                            "uri": "https://liff.line.me/1656895429-ekjYY9Do"
+                                                        }
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "text": "หรือใช้ Rich Menu ด้านล่างหน้าจอ ⬇️⬇️⬇️⬇️",
+                                                        "align": "center",
+                                                        "wrap": true
+                                                    }
+                                                ],
+                                                "spacing": "xl"
+                                            }
+                                        ],
+                                        "spacing": "lg"
+                                    },
+                                    "styles": {
+                                        "header": {
+                                            "backgroundColor": "#0069D9"
+                                        }
+                                    }
+                                }
+                                let flex = {
+                                    "type": "flex",
+                                    "altText": "สวัสดี คุณ " + profile.displayName,
+                                    "contents": bubble
+                                }
+                                liff.sendMessages([flex]).then(function () {
+                                    liff.closeWindow()
+                                })
+                            } else {
+                                window.location.href = 'https://lin.ee/RMVcU7O'
+                            }
+
+                        })
+                    }
+
+                },
+                error: function (err) {
+                    $.LoadingOverlay("hide");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ลงทะเบียนไม่สำเร็จ',
+                        text: 'กรุณาลองใหม่อีกครั้ง',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+        }
+    })
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
