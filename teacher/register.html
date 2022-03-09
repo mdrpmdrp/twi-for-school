@@ -77,13 +77,8 @@
                 <form id="regist-form">
                     <div class="row justify-content-center">
                         <div class="col-12  text-center mt-3">
-                            <label for="name"><span><img alt="icon" src="https://img.icons8.com/fluency-systems-regular/20/ffffff/user.png" /></span> Fullname</label>
+                            <label for="name"><span><img alt="icon" src="https://img.icons8.com/fluency-systems-regular/20/ffffff/user.png" /></span> Fullname *</label>
                             <input type="text" id="name" name="name" class="form-control">
-                        </div>
-                        <div class="col-12  text-center mt-3">
-                            <label for="email"><span><img alt="icon" src="https://img.icons8.com/external-kmg-design-basic-outline-kmg-design/20/ffffff/external-email-business-management-kmg-design-basic-outline-kmg-design.png" /></span>
-                                Email</label>
-                            <input type="email" id="email" name="email" class="form-control">
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -92,11 +87,27 @@
                             <input type="text" id="lineid" name="lineid" class="form-control">
                         </div>
                         <div class="col-12  text-center mt-3">
+                            <label for="whatsapp"><span><img src="https://img.icons8.com/windows/20/ffffff/whatsapp--v1.png" /></span> WhatsApp</label>
+                            <input type="text" id="whatsapp" name="whatsapp" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12  text-center mt-3">
+                            <label for="wechat"><span><img src="https://img.icons8.com/ios/20/ffffff/weixing.png" /></span> WeChat ID</label>
+                            <input type="text" id="wechat" name="wechat" class="form-control">
+                        </div>
+                        <div class="col-12  text-center mt-3">
+                            <label for="facebook"><span><img src="https://img.icons8.com/windows/20/ffffff/facebook-new.png" /></span> Facebook</label>
+                            <input type="text" id="facebook" name="facebook" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12  text-center mt-3">
                             <label for="tel"><span><img alt="icon" src="https://img.icons8.com/material-outlined/20/ffffff/phone-not-being-used.png" /></span> Tel</label>
                             <input type="text" id="tel" name="tel" class="form-control">
                         </div>
                     </div>
-                    <div class="row mt-4">
+                    <div class="row mt-4 mb-5">
                         <div class="col text-center">
                             <button type="submit" class="btn btn-warning submit-btn">Confirm</button>
                         </div>
@@ -118,230 +129,231 @@
             scaleMobile: 1.00
         })
     </script>
-<script>
-    var scripturl ='https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
-    $(document).ready(function(){
-        liff.init({ liffId: '1656895429-Krdqqkw8' })
-        liff.ready.then(() => {
-            if (!liff.isLoggedIn()) {
-                liff.login();
-            }
-        })
-        
-    })
-    $('#regist-form').submit(async function () {
-        event.preventDefault()
-        let formdata = $(this).serializeArray()
-        let data = {}
-        formdata.forEach(function (item) {
-            data[item.name] = item.value
-        })
-        let isAlert = false
-        Object.keys(data).forEach(function (key) {
-            if (data[key] == '' && !isAlert) {
-                isAlert = true
-                $(`#${key}`).focus()
-                Swal.fire({
-                    icon: 'error',
-                    title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                    text: $('label[for=' + key + ']').text(),
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                return false
-            }
-        })
+    <script>
+        var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
+        $(document).ready(function () {
+            liff.init({ liffId: '1656895429-Krdqqkw8' })
+            liff.ready.then(() => {
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                }
+            })
 
-        if (!isAlert) {
-            $.LoadingOverlay("show", {
-                // background: "rgba(177, 48, 104, 0.5)"
-            });
-            let profile = await liff.getProfile()
-            data.uid = profile.userId
-            data.displayname = profile.displayName
-            data.pictureurl = profile.pictureUrl
-            $.ajax({
-                url: scripturl + '?opt=teacherregist',
-                type: 'POST',
-                data: data,
-                success: function (res) {
-                    $.LoadingOverlay("hide");
-                    if (res == 'duplicate') {
+        })
+        $('#regist-form').submit(async function () {
+            event.preventDefault()
+            let formdata = $(this).serializeArray()
+            let data = {}
+            formdata.forEach(function (item) {
+                data[item.name] = item.value
+            })
+            let isAlert = false
+            Object.keys(data).forEach(function (key) {
+                if (data[key] == '' && !isAlert) {
+                    isAlert = true
+                    $(`#${key}`).focus()
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Please complete the information.',
+                        text: 'If there is no information, please enter "-"',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    })
+                    return false
+                }
+            })
+
+            if (!isAlert) {
+                $.LoadingOverlay("show", {
+                    // background: "rgba(177, 48, 104, 0.5)"
+                });
+                let profile = await liff.getProfile()
+                data.uid = profile.userId
+                data.displayname = profile.displayName
+                data.pictureurl = profile.pictureUrl
+                $.ajax({
+                    url: scripturl + '?opt=teacherregist',
+                    type: 'POST',
+                    data: data,
+                    success: function (res) {
+                        $.LoadingOverlay("hide");
+                        if (res == 'duplicate') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'ลงทะเบียนไม่สำเร็จ',
+                                text: 'บัญชีไลน์นี้ลงทะเบียนแล้ว',
+                                confirmButtonText: 'ตกลง',
+                            }).then((result) => {
+                                if (liff.isInClient()) {
+                                    liff.closeWindow();
+                                } else {
+                                    window.location.href = 'https://lin.ee/RMVcU7O'
+                                }
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'ลงทะเบียนเสร็จสิ้น',
+                                html: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่<br>TWI ChatBot ของเรา',
+                                confirmButtonText: 'ตกลง',
+                            }).then(function () {
+                                if (liff.isInClient()) {
+                                    let bubble = {
+                                        "type": "bubble",
+                                        "header": {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents": [
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                        {
+                                                            "type": "image",
+                                                            "url": profile.pictureUrl,
+                                                            "size": "full",
+                                                            "aspectMode": "cover"
+                                                        }
+                                                    ],
+                                                    "width": "50px",
+                                                    "cornerRadius": "50px"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "Welcome " + profile.displayName,
+                                                            "weight": "bold",
+                                                            "color": "#ffffff"
+                                                        }
+                                                    ],
+                                                    "alignItems": "center",
+                                                    "justifyContent": "center"
+                                                }
+                                            ],
+                                            "margin": "lg",
+                                            "paddingAll": "md"
+                                        },
+                                        "body": {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "contents": [
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "ท่านสามารถค้นหาครูต่างชาติด้วยการกดปุ่มค้นหาครู",
+                                                            "wrap": true,
+                                                            "align": "center"
+                                                        },
+                                                        {
+                                                            "type": "box",
+                                                            "layout": "horizontal",
+                                                            "contents": [
+                                                                {
+                                                                    "type": "box",
+                                                                    "layout": "vertical",
+                                                                    "contents": [
+                                                                        {
+                                                                            "type": "box",
+                                                                            "layout": "vertical",
+                                                                            "contents": [
+                                                                                {
+                                                                                    "type": "image",
+                                                                                    "url": "https://img.in.th/images/f2f0cb7f9ab880ef8868d819d1b73632.png",
+                                                                                    "size": "full",
+                                                                                    "aspectMode": "fit",
+                                                                                    "animated": true,
+                                                                                    "flex": 7,
+                                                                                    "align": "start"
+                                                                                }
+                                                                            ],
+                                                                            "width": "30px"
+                                                                        }
+                                                                    ],
+                                                                    "height": "30px",
+                                                                    "flex": 3,
+                                                                    "alignItems": "flex-end"
+                                                                },
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "ค้นหาครู",
+                                                                    "gravity": "center",
+                                                                    "align": "start",
+                                                                    "flex": 5
+                                                                }
+                                                            ],
+                                                            "justifyContent": "center",
+                                                            "alignItems": "center",
+                                                            "spacing": "md",
+                                                            "borderColor": "#333333",
+                                                            "cornerRadius": "50px",
+                                                            "borderWidth": "medium",
+                                                            "height": "50px",
+                                                            "action": {
+                                                                "type": "uri",
+                                                                "label": "action",
+                                                                "uri": "https://liff.line.me/1656895429-ekjYY9Do"
+                                                            }
+                                                        },
+                                                        {
+                                                            "type": "text",
+                                                            "text": "หรือใช้ Rich Menu ด้านล่างหน้าจอ ⬇️⬇️⬇️⬇️",
+                                                            "align": "center",
+                                                            "wrap": true
+                                                        }
+                                                    ],
+                                                    "spacing": "xl"
+                                                }
+                                            ],
+                                            "spacing": "lg"
+                                        },
+                                        "styles": {
+                                            "header": {
+                                                "backgroundColor": "#0069D9"
+                                            }
+                                        }
+                                    }
+                                    let flex = {
+                                        "type": "flex",
+                                        "altText": "สวัสดี คุณ " + profile.displayName,
+                                        "contents": bubble
+                                    }
+                                    liff.sendMessages([flex]).then(function () {
+                                        liff.closeWindow()
+                                    })
+                                } else {
+                                    window.location.href = 'https://lin.ee/RMVcU7O'
+                                }
+
+                            })
+                        }
+
+                    },
+                    error: function (err) {
+                        $.LoadingOverlay("hide");
                         Swal.fire({
                             icon: 'error',
                             title: 'ลงทะเบียนไม่สำเร็จ',
-                            text: 'บัญชีไลน์นี้ลงทะเบียนแล้ว',
-                            confirmButtonText: 'ตกลง',
-                        }).then((result) => {
-                            if (liff.isInClient()) {
-                                liff.closeWindow();
-                            } else {
-                                window.location.href = 'https://lin.ee/RMVcU7O'
-                            }
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'ลงทะเบียนเสร็จสิ้น',
-                            html: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่<br>TWI ChatBot ของเรา',
-                            confirmButtonText: 'ตกลง',
-                        }).then(function () {
-                            if (liff.isInClient()) {
-                                let bubble = {
-                                    "type": "bubble",
-                                    "header": {
-                                        "type": "box",
-                                        "layout": "horizontal",
-                                        "contents": [
-                                            {
-                                                "type": "box",
-                                                "layout": "vertical",
-                                                "contents": [
-                                                    {
-                                                        "type": "image",
-                                                        "url": profile.pictureUrl,
-                                                        "size": "full",
-                                                        "aspectMode": "cover"
-                                                    }
-                                                ],
-                                                "width": "50px",
-                                                "cornerRadius": "50px"
-                                            },
-                                            {
-                                                "type": "box",
-                                                "layout": "vertical",
-                                                "contents": [
-                                                    {
-                                                        "type": "text",
-                                                        "text": "Welcome " + profile.displayName,
-                                                        "weight": "bold",
-                                                        "color": "#ffffff"
-                                                    }
-                                                ],
-                                                "alignItems": "center",
-                                                "justifyContent": "center"
-                                            }
-                                        ],
-                                        "margin": "lg",
-                                        "paddingAll": "md"
-                                    },
-                                    "body": {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "contents": [
-                                            {
-                                                "type": "box",
-                                                "layout": "vertical",
-                                                "contents": [
-                                                    {
-                                                        "type": "text",
-                                                        "text": "ท่านสามารถค้นหาครูต่างชาติด้วยการกดปุ่มค้นหาครู",
-                                                        "wrap": true,
-                                                        "align": "center"
-                                                    },
-                                                    {
-                                                        "type": "box",
-                                                        "layout": "horizontal",
-                                                        "contents": [
-                                                            {
-                                                                "type": "box",
-                                                                "layout": "vertical",
-                                                                "contents": [
-                                                                    {
-                                                                        "type": "box",
-                                                                        "layout": "vertical",
-                                                                        "contents": [
-                                                                            {
-                                                                                "type": "image",
-                                                                                "url": "https://img.in.th/images/f2f0cb7f9ab880ef8868d819d1b73632.png",
-                                                                                "size": "full",
-                                                                                "aspectMode": "fit",
-                                                                                "animated": true,
-                                                                                "flex": 7,
-                                                                                "align": "start"
-                                                                            }
-                                                                        ],
-                                                                        "width": "30px"
-                                                                    }
-                                                                ],
-                                                                "height": "30px",
-                                                                "flex": 3,
-                                                                "alignItems": "flex-end"
-                                                            },
-                                                            {
-                                                                "type": "text",
-                                                                "text": "ค้นหาครู",
-                                                                "gravity": "center",
-                                                                "align": "start",
-                                                                "flex": 5
-                                                            }
-                                                        ],
-                                                        "justifyContent": "center",
-                                                        "alignItems": "center",
-                                                        "spacing": "md",
-                                                        "borderColor": "#333333",
-                                                        "cornerRadius": "50px",
-                                                        "borderWidth": "medium",
-                                                        "height": "50px",
-                                                        "action": {
-                                                            "type": "uri",
-                                                            "label": "action",
-                                                            "uri": "https://liff.line.me/1656895429-ekjYY9Do"
-                                                        }
-                                                    },
-                                                    {
-                                                        "type": "text",
-                                                        "text": "หรือใช้ Rich Menu ด้านล่างหน้าจอ ⬇️⬇️⬇️⬇️",
-                                                        "align": "center",
-                                                        "wrap": true
-                                                    }
-                                                ],
-                                                "spacing": "xl"
-                                            }
-                                        ],
-                                        "spacing": "lg"
-                                    },
-                                    "styles": {
-                                        "header": {
-                                            "backgroundColor": "#0069D9"
-                                        }
-                                    }
-                                }
-                                let flex = {
-                                    "type": "flex",
-                                    "altText": "สวัสดี คุณ " + profile.displayName,
-                                    "contents": bubble
-                                }
-                                liff.sendMessages([flex]).then(function () {
-                                    liff.closeWindow()
-                                })
-                            } else {
-                                window.location.href = 'https://lin.ee/RMVcU7O'
-                            }
-
+                            text: 'กรุณาลองใหม่อีกครั้ง',
+                            showConfirmButton: false,
+                            timer: 1500
                         })
                     }
+                })
+            }
+        })
+    </script>
 
-                },
-                error: function (err) {
-                    $.LoadingOverlay("hide");
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'ลงทะเบียนไม่สำเร็จ',
-                        text: 'กรุณาลองใหม่อีกครั้ง',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            })
-        }
-    })
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
