@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Teacher Registration</title>
     <style>
         body {
             min-height: 100vh;
@@ -241,65 +241,9 @@
                                                     "contents": [
                                                         {
                                                             "type": "text",
-                                                            "text": "ท่านสามารถค้นหาครูต่างชาติด้วยการกดปุ่มค้นหาครู",
+                                                            "text": "You can view all of your opportunities by type \"#SeeAll\"",
                                                             "wrap": true,
                                                             "align": "center"
-                                                        },
-                                                        {
-                                                            "type": "box",
-                                                            "layout": "horizontal",
-                                                            "contents": [
-                                                                {
-                                                                    "type": "box",
-                                                                    "layout": "vertical",
-                                                                    "contents": [
-                                                                        {
-                                                                            "type": "box",
-                                                                            "layout": "vertical",
-                                                                            "contents": [
-                                                                                {
-                                                                                    "type": "image",
-                                                                                    "url": "https://img.in.th/images/f2f0cb7f9ab880ef8868d819d1b73632.png",
-                                                                                    "size": "full",
-                                                                                    "aspectMode": "fit",
-                                                                                    "animated": true,
-                                                                                    "flex": 7,
-                                                                                    "align": "start"
-                                                                                }
-                                                                            ],
-                                                                            "width": "30px"
-                                                                        }
-                                                                    ],
-                                                                    "height": "30px",
-                                                                    "flex": 3,
-                                                                    "alignItems": "flex-end"
-                                                                },
-                                                                {
-                                                                    "type": "text",
-                                                                    "text": "ค้นหาครู",
-                                                                    "gravity": "center",
-                                                                    "align": "start",
-                                                                    "flex": 5
-                                                                }
-                                                            ],
-                                                            "justifyContent": "center",
-                                                            "alignItems": "center",
-                                                            "spacing": "md",
-                                                            "borderColor": "#333333",
-                                                            "cornerRadius": "50px",
-                                                            "borderWidth": "medium",
-                                                            "height": "50px",
-                                                            "action": {
-                                                                "type": "uri",
-                                                                "label": "action",
-                                                                "uri": "https://liff.line.me/1656895429-ekjYY9Do"
-                                                            }
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": "หรือใช้ Rich Menu ด้านล่างหน้าจอ ⬇️⬇️⬇️⬇️",
-                                                            "align": "center",
-                                                            "wrap": true
                                                         }
                                                     ],
                                                     "spacing": "xl"
@@ -315,9 +259,23 @@
                                     }
                                     let flex = {
                                         "type": "flex",
-                                        "altText": "สวัสดี คุณ " + profile.displayName,
-                                        "contents": bubble
+                                        "altText": "Hello " + profile.displayName,
+                                        "contents": bubble,
+                                         "quickReply": {
+                                            "items": [
+                                                {
+                                                    "type": "action",
+                                                    "action": {
+                                                        "type": "message",
+                                                        "label": "See All Opportunities",
+                                                        "text": "#SeeAll"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    
                                     }
+                                  
                                     liff.sendMessages([flex]).then(function () {
                                         liff.closeWindow()
                                     })
