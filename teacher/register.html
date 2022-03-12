@@ -121,19 +121,19 @@
             gyroControls: true,
             minHeight: 50.00,
             minWidth: 50.00,
-            scale: 0.50,
-            scaleMobile: 0.2
+            scale: 1.00,
+            scaleMobile: 3.00
         })
     </script>
     <script>
         var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
         $(document).ready(function () {
-            liff.init({ liffId: '1656895429-Krdqqkw8' })
-            liff.ready.then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                }
-            })
+            // liff.init({ liffId: '1656895429-Krdqqkw8' })
+            // liff.ready.then(() => {
+            //     if (!liff.isLoggedIn()) {
+            //         liff.login();
+            //     }
+            // })
         })
         $('#regist-form').submit(async function () {
             event.preventDefault()
