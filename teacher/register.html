@@ -198,19 +198,6 @@
                                     window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSdY0FcBwfNSe6PZ8A5n1eUZXBoAcgVFxuiWc6AKm6X-8PZvnw/viewform'
                                 }
                             })
-                        } else {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success',
-                                text: 'Registration is successful.',
-                                confirmButtonText: 'OK',
-                            }).then((result) => {
-                                if (liff.isInClient()) {
-                                    liff.closeWindow();
-                                } else {
-                                    window.location.href = 'https://lin.ee/RMVcU7O'
-                                }
-                            })
                         }
                         else {
                             Swal.fire({
