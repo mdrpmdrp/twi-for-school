@@ -177,7 +177,7 @@
                                 icon: 'error',
                                 title: 'Error',
                                 text: 'This Line Account is already registered.',
-                                confirmButtonText: 'ตกลง',
+                                confirmButtonText: 'OK',
                             }).then((result) => {
                                 if (liff.isInClient()) {
                                     liff.closeWindow();
@@ -190,7 +190,7 @@
                                 icon: 'success',
                                 title: 'Success',
                                 html: 'You can now recieve notifications from us.',
-                                confirmButtonText: 'ตกลง',
+                                confirmButtonText: 'OK',
                             }).then(function () {
                                 if (liff.isInClient()) {
                                     let bubble = {
