@@ -103,7 +103,7 @@
                             <input type="text" id="tel" name="tel" class="form-control">
                         </div>
                     </div>
-        
+
                     <div class="row mt-4 mb-5">
                         <div class="col text-center">
                             <button type="submit" class="btn btn-warning submit-btn">Confirm</button>
@@ -128,12 +128,12 @@
     <script>
         var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
         $(document).ready(function () {
-            // liff.init({ liffId: '1656895429-Krdqqkw8' })
-            // liff.ready.then(() => {
-            //     if (!liff.isLoggedIn()) {
-            //         liff.login();
-            //     }
-            // })
+            liff.init({ liffId: '1656895429-Krdqqkw8' })
+            liff.ready.then(() => {
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                }
+            })
         })
         $('#regist-form').submit(async function () {
             event.preventDefault()
@@ -185,7 +185,34 @@
                                     window.location.href = 'https://lin.ee/RMVcU7O'
                                 }
                             })
+                        } else if(res == 'notfound'){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                html: 'Your input is not found. Please Check your name.<br>If you are not yet registered with google form, please register with this link <a href="https://docs.google.com/forms/d/e/1FAIpQLSdY0FcBwfNSe6PZ8A5n1eUZXBoAcgVFxuiWc6AKm6X-8PZvnw/viewform" target="_blank">Registration with google form</a> and then try again.',
+                                confirmButtonText: 'OK',
+                            }).then((result) => {
+                                if (liff.isInClient()) {
+                                    liff.closeWindow();
+                                } else {
+                                    window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSdY0FcBwfNSe6PZ8A5n1eUZXBoAcgVFxuiWc6AKm6X-8PZvnw/viewform'
+                                }
+                            })
                         } else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'Registration is successful.',
+                                confirmButtonText: 'OK',
+                            }).then((result) => {
+                                if (liff.isInClient()) {
+                                    liff.closeWindow();
+                                } else {
+                                    window.location.href = 'https://lin.ee/RMVcU7O'
+                                }
+                            })
+                        }
+                        else {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Success',
@@ -261,7 +288,7 @@
                                         "type": "flex",
                                         "altText": "Hello " + profile.displayName,
                                         "contents": bubble,
-                                         "quickReply": {
+                                        "quickReply": {
                                             "items": [
                                                 {
                                                     "type": "action",
@@ -273,15 +300,15 @@
                                                 }
                                             ]
                                         }
-                                    
+
                                     }
                                     let text = {
                                         "type": "text",
                                         "text": "#SeeAll",
-                                       
+
                                     }
-                                  
-                                    liff.sendMessages([flex,text]).then(function () {
+
+                                    liff.sendMessages([flex, text]).then(function () {
                                         liff.closeWindow()
                                     })
                                 } else {
