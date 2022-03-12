@@ -175,8 +175,8 @@
                         if (res == 'duplicate') {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'ลงทะเบียนไม่สำเร็จ',
-                                text: 'บัญชีไลน์นี้ลงทะเบียนแล้ว',
+                                title: 'Error',
+                                text: 'This Line Account is already registered.',
                                 confirmButtonText: 'ตกลง',
                             }).then((result) => {
                                 if (liff.isInClient()) {
@@ -188,8 +188,8 @@
                         } else {
                             Swal.fire({
                                 icon: 'success',
-                                title: 'ลงทะเบียนเสร็จสิ้น',
-                                html: 'คุณสามารถค้นหาข้อมูลครูต่างชาติได้ที่<br>TWI ChatBot ของเรา',
+                                title: 'Success',
+                                html: 'You can now recieve notifications from us.',
                                 confirmButtonText: 'ตกลง',
                             }).then(function () {
                                 if (liff.isInClient()) {
