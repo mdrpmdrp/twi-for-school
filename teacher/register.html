@@ -72,7 +72,9 @@
         </section>
         <section>
             <div class="container-fluid main-container">
+               
                 <form id="regist-form">
+                    <p class="text-light p-4 h5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to TWI teacher jobs alert registration. Pls fill up your fullname same as we sent you in the email and fill up LINE ID and phone number. If you do not have WhatsApp WeChat or Facebook, pls fill "-" in the answer</p>
                     <div class="row justify-content-center">
                         <div class="col-md-4  text-center mt-3">
                             <label for="name"><span><img alt="icon" src="https://img.icons8.com/fluency-systems-regular/20/ffffff/user.png" /></span> Fullname *</label>
@@ -150,7 +152,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Please complete the information.',
-                        text: 'If there is no information, please enter "-"',
+                        text: 'Please enter "-" for any blank information',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
@@ -185,7 +187,7 @@
                                     window.location.href = 'https://lin.ee/RMVcU7O'
                                 }
                             })
-                        } else if(res == 'notfound'){
+                        } else if (res == 'notfound') {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
